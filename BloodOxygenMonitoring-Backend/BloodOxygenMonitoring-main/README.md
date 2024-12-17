@@ -37,6 +37,14 @@ npm start
 Usage
 After starting the server, it will listen on HTTPS port 3000. You can access the API through the configured endpoints, e.g., https://localhost:3000/patient for patient data.
 
+<<<<<<< HEAD:BloodOxygenMonitoring-main/BloodOxygenMonitoring-main/README.md
+=======
+https://localhost:3000/physician for physician data.
+
+
+https://localhost:3000/particle for particle data.
+
+>>>>>>> f927e809d3e1623c65bb7e7c1726d8e6473fadb3:BloodOxygenMonitoring-Backend/BloodOxygenMonitoring-main/README.md
 Contributing
 Feel free to fork the repository and submit pull requests. You can also report bugs or request features through the issue tracker.
 

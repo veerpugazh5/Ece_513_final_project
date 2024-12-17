@@ -1,0 +1,196 @@
+/* General Page Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #61b661; /* Soft mint green background */
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.hero-description {
+  color: #000000;
+  font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2572ba;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: wrap; /* Adjust layout for smaller screens */
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.navbar li {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #ffffff;
+  color: black;
+  text-align: center;
+  padding: 4rem 2rem;
+  flex: 1;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Adjust for smaller screens */
+}
+
+.hero-buttons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #051727;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hero-buttons button:hover {
+  background-color: #2572ba;
+}
+
+/* Features Section */
+.features {
+  padding: 3rem 2rem;
+  background-color: rgb(82, 196, 238);
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-item {
+  background-color: #edf6f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Fixed shadow color */
+  flex: 1 1 calc(33.33% - 2rem); /* Flexible width for grid items */
+  max-width: 300px; /* Ensure items don't grow too large */
+  box-sizing: border-box;
+}
+
+.feature-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #272525;
+}
+
+/* Footer */
+.footer {
+  background-color: #2572ba;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Responsive Design */
+
+/* For Tablets */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-buttons button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .feature-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* For Mobile Devices */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature-item {
+    padding: 1rem;
+    text-align: center;
+  }
+}

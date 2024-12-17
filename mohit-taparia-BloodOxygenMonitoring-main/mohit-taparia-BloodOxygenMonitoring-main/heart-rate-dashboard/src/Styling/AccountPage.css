@@ -1,0 +1,169 @@
+/* Account Page Styles */
+.account-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f0f4f8;
+  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+}
+
+.account-container {
+  width: 95%;
+  max-width: 1200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 20px;
+  gap: 20px;
+  box-sizing: border-box; /* Prevent padding from overflowing */
+}
+
+.account-details,
+.change-password {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 300px;
+  width: 48%;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.account-details h2,
+.change-password h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input,
+form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%; /* Make inputs full width */
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping in smaller screens */
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.row > div {
+  flex: 1;
+}
+/* Button Styles */
+button {
+  padding: 8px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #2572ba;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #1e5a8e;
+}
+
+.save-button {
+  background-color: #2572ba;
+}
+
+.change-password button {
+  margin-top: 10px;
+  background-color: #2572ba;
+}
+
+/* Responsive Design */
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .account-container {
+    flex-direction: column; /* Stack sections vertically */
+    padding: 15px;
+  }
+
+  .account-details,
+  .change-password {
+    flex: 1 1 100%; /* Full width on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .account-page {
+    padding: 10px;
+  }
+
+  .account-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  form input,
+  form select {
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-page {
+    padding: 5px;
+  }
+
+  .account-container {
+    padding: 10px;
+  }
+
+  .account-details h2,
+  .change-password h2 {
+    font-size: 1.2rem;
+  }
+
+  form input,
+  form select {
+    padding: 5px;
+    font-size: 0.8rem;
+  }
+
+  button {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  .row > div {
+    flex: 1 1 100%; /* Full width for all rows */
+  }
+}

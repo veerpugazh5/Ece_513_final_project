@@ -1,0 +1,97 @@
+/* Container for the entire physician account page */
+.physician-account-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Styling for the details and password sections */
+  .details-section,
+  .password-section {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ensure a consistent header size */
+  .details-section h2,
+  .password-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333333;
+    text-align: center;
+  }
+  
+  /* Styling for the form labels and inputs */
+  form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  /* Styling for the buttons */
+  form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  form button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Align the "Change Password" section next to "Account Details" */
+  .password-section {
+    max-width: 40%;
+  }
+  
+  /* Align the "Account Details" section */
+  .details-section {
+    max-width: 55%;
+  }
+  
+  /* Adjust spacing inside the address section */
+  .details-section h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .physician-account-page {
+      flex-direction: column;
+    }
+  
+    .details-section,
+    .password-section {
+      max-width: 100%;
+    }
+  }

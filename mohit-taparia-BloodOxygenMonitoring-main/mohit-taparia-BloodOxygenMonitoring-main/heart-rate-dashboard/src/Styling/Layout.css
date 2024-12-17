@@ -1,0 +1,77 @@
+/* src/components/Layout.css */
+
+/* Layout Container */
+.layout-container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger-icon div {
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background: linear-gradient(45deg, #22e2ff, #001aff);
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  height: 100%;
+  transition: 0.3s;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar h3 {
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+  cursor: pointer;
+  color: white;
+  text-decoration: underline;
+}
+
+.sidebar ul li:hover {
+  text-decoration: none;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 50px; /* Ensure content is not blocked by hamburger icon */
+  transition: margin-left 0.3s;
+}
+
+.sidebar.open + .content {
+  margin-left: 200px; /* Adjust content position when sidebar is open */
+}

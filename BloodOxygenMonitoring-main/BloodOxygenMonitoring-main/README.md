@@ -37,6 +37,11 @@ npm start
 Usage
 After starting the server, it will listen on HTTPS port 3000. You can access the API through the configured endpoints, e.g., https://localhost:3000/patient for patient data.
 
+https://localhost:3000/physician for physician data.
+
+
+https://localhost:3000/particle for particle data.
+
 Contributing
 Feel free to fork the repository and submit pull requests. You can also report bugs or request features through the issue tracker.
 

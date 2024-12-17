@@ -1,4 +1,4 @@
-const BASE_URL = "https://heartrackerpro.duckdns.org:3000"; // Base URL for the backend
+const BASE_URL = "https://sugar-dairy-viewed-treasures.trycloudflare.com"; // Base URL for the backend
 
 const apiLinks = {
   // Authentication Endpoints
@@ -18,17 +18,20 @@ const apiLinks = {
   physicianResetPassword: `${BASE_URL}/physician/reset-password`, // Reset password for a physician
   getAssignedPatients: `${BASE_URL}/physician/registeredpatientsstats`,
   getPatientsdetails: `${BASE_URL}/physician/patientsview`, // Fetch all assigned patients
-  getPatientDailyDetails: `${BASE_URL}/physician/getdevicereadings`, // Fetch daily device readings for a patient
+  getPatientDailyDetails: `${BASE_URL}/physician/getdevicereadings`, 
+  getPatientDeviceReadings: `${BASE_URL}/patient/getdevicereadings`, // Fetch daily device readings for a patient
   updateMeasurementFrequency: `${BASE_URL}/physician/patient/update-frequency`, // Update measurement frequency for a patient
 
   // Device API Endpoints
   deviceRegister: `${BASE_URL}/patient/registerparticle`, // Register a new device
   getRegisteredDevices: `${BASE_URL}/patient/getalldevices`, // Get all registered devices
-  deleteDevice: `${BASE_URL}/patient/deletedevice`,       // Delete a registered device
+  deleteDevice: `${BASE_URL}/patient/deletedevice`, 
+  getDevice : `${BASE_URL}/patient/getdevices`,      // Delete a registered device
 
   // Sensor Data Endpoints
   sensorWeeklySummary: `${BASE_URL}/physician/patient-date-range-summary`, // Fetch weekly summary data for sensors
-  sensorDailyDetails: `${BASE_URL}/sensor/daily-details`,   // Fetch daily detailed data for sensors
+  sensorDailyDetails: `${BASE_URL}/sensor/daily-details`, 
+  PatientsensorWeeklySummary: `${BASE_URL}/patient/patient-date-range-summary`,   
 
   // Miscellaneous
   getAllPhysicians: `${BASE_URL}/patient/getallphysicians`, // Get a list of all physicians

@@ -4,9 +4,10 @@ import '../Styling/Layout.css';
 
 const menuConfig = {
   Patient: [
-    { label: 'Account', path: '/account' },
+    { label: 'Account', path: '/AccountPage' },
     { label: 'Device Registration', path: '/device-registration' },
-    { label: 'Patient Dashboard', path: '/patient-dashboard' }, // Replaced Sensor Visualization
+    { label: 'Patient Dashboard', path: '/patient-dashboard' },
+    { label: "Detailed View", path: "/detailed-view" }, // Replaced Sensor Visualization
     { label: 'Logout', action: 'logout' },
   ],
   Physician: [

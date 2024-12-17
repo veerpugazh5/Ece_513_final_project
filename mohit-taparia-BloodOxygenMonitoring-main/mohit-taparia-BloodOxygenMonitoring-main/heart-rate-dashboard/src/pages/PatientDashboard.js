@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import WeeklySummaryView from "../components/WeeklySummaryView";
 import DailyDetailsView from "../components/DailyDetailsView";
-import MeasurementControls from "../components/MeasurementControls";
 import "../Styling/PatientDashboard.css";
 
 function PatientDashboard() {
@@ -12,7 +11,6 @@ function PatientDashboard() {
       {!selectedDay ? (
         <>
           <WeeklySummaryView onSelectDay={setSelectedDay} />
-          <MeasurementControls initialRange="08:00-20:00" initialFrequency={10} />
         </>
       ) : (
         <DailyDetailsView selectedDay={selectedDay} onBack={() => setSelectedDay(null)} />

@@ -8,6 +8,8 @@ import PhysicianAccountPage from './components/PhysicianAccountPage';
 import DeviceRegistration from './components/DeviceRegistration';
 import Layout from './components/Layout';
 import Home from './components/Home';
+import DetailedView from "./components/DetailedView";
+import Contact from "./components/contact";
 import About from './components/About';
 import PatientDashboard from './pages/PatientDashboard'; // Import Patient Dashboard
 import PatientView from './components/PatientView';
@@ -22,6 +24,7 @@ function App() {
         {/* Login and Registration without navigation */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Home and About pages without Layout */}
         <Route path="/home" element={<Home />} />
@@ -29,7 +32,7 @@ function App() {
 
         {/* Pages wrapped with Layout for navigation */}
         <Route
-          path="/account"
+          path="/AccountPage"
           element={
             <Layout>
               <AccountPage />
@@ -75,6 +78,15 @@ function App() {
           element={
             <Layout>
               <PatientDashboard />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/detailed-view"
+          element={
+            <Layout>
+              <DetailedView />
             </Layout>
           }
         />

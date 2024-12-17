@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Line, Bar } from "react-chartjs-2"; // Import Bar chart
+import { Line, Bar } from "react-chartjs-2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -35,6 +35,8 @@ function PatientView() {
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [dailyDetails, setDailyDetails] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(""); // Start time filter
+  const [endTime, setEndTime] = useState(""); // End time filter
   const token = localStorage.getItem("token");
 
   // Fetch patients
@@ -54,24 +56,40 @@ function PatientView() {
   }, [token]);
 
   // Fetch daily stats
-  const fetchDailyDetails = async (deviceSerialNumber) => {
+  const fetchDailyDetails = async (deviceSerialNumber, email) => {
     try {
       const response = await axios.post(
         apiLinks.getPatientDailyDetails,
-        { deviceSerialNumber },
+        { deviceSerialNumber, email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setDailyDetails(response.data || []);
+
+      const { startTime, endTime, readings } = response.data;
+
+      // Set default filters based on backend response
+      setStartTime(startTime || "06:00");
+      setEndTime(endTime || "22:00");
+
+      setDailyDetails(readings || []);
     } catch (error) {
       console.error("Error fetching daily details:", error);
       alert("Failed to fetch daily details.");
     }
   };
 
-  // Filter data by date
+  // Filter data by date and time
   const filteredDetails = dailyDetails.filter((detail) => {
     const detailDate = new Date(detail.timestamp).toDateString();
-    return detailDate === selectedDate.toDateString();
+    const detailTime = new Date(detail.timestamp).toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return (
+      detailDate === selectedDate.toDateString() &&
+      detailTime >= startTime &&
+      detailTime <= endTime
+    );
   });
 
   // Heart Rate Line Chart Data
@@ -174,6 +192,24 @@ function PatientView() {
                 maxDate={new Date()}
               />
             </div>
+
+            <div className="device-row">
+              <label>Start Time</label>
+              <input
+                type="time"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+              />
+            </div>
+            <div className="device-row">
+              <label>End Time</label>
+              <input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+              />
+            </div>
+
             <div>
               <h3>Sensor</h3>
               {selectedPatient.devices?.length > 0 ? (
@@ -183,7 +219,7 @@ function PatientView() {
                       (d) => d.serialNumber === e.target.value
                     );
                     setSelectedDevice(device);
-                    fetchDailyDetails(device.serialNumber);
+                    fetchDailyDetails(device.serialNumber, selectedPatient.email);
                   }}
                 >
                   <option value="">Select Device</option>
@@ -204,7 +240,10 @@ function PatientView() {
         {selectedDevice && (
           <div className="graphs-container">
             <div className="graph-section">
-              <Line data={heartRateData} options={graphOptions("Heart Rate (bpm)")} />
+              <Line
+                data={heartRateData}
+                options={graphOptions("Heart Rate (bpm)")}
+              />
             </div>
             <div className="graph-section">
               <Line data={spO2Data} options={graphOptions("SpO2 (%)")} />
@@ -215,7 +254,10 @@ function PatientView() {
         {/* Combined Bar Graph */}
         {selectedDevice && (
           <div className="combined-bar-section">
-            <Bar data={combinedBarData} options={graphOptions("Heart Rate & SpO2 Combined")} />
+            <Bar
+              data={combinedBarData}
+              options={graphOptions("Heart Rate & SpO2 Combined")}
+            />
           </div>
         )}
       </div>

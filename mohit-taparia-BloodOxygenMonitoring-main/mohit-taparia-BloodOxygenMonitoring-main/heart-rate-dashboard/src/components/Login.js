@@ -29,7 +29,7 @@ function Login() {
 
       // Navigate to the respective account page based on role
       if (role === 'Patient') {
-        navigate('/sensor-visualization', {
+        navigate('/AccountPage', {
           state: {
             email: patient.email,
             role,

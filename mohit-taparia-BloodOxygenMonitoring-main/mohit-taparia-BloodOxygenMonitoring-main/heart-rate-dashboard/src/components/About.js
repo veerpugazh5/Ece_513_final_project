@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styling/About.css";
-//import apiLinks from '../utils/apilinks';
+
+// Import images
+import team1 from "../images/team1.jpeg";
+import team2 from "../images/team2.jpeg";
+import team3 from "../images/team3.jpeg";
 
 function About() {
   const navigate = useNavigate();
@@ -41,17 +45,17 @@ function About() {
         <h2>Meet the Team</h2>
         <div className="team-container">
           <div className="team-member">
-            <img src="/images/team1.jpg" alt="Team Member 1" />
+            <img src={team1} alt="Veeramani" />
             <h3>Veeramani</h3>
             <p>Project Manager</p>
           </div>
           <div className="team-member">
-            <img src="/images/team2.jpg" alt="Team Member 2" />
+            <img src={team2} alt="Srinivasan" />
             <h3>Srinivasan</h3>
             <p>Lead Developer</p>
           </div>
           <div className="team-member">
-            <img src="/images/team3.jpg" alt="Team Member 3" />
+            <img src={team3} alt="Mohit" />
             <h3>Mohit</h3>
             <p>UI/UX Designer</p>
           </div>
@@ -74,7 +78,9 @@ function About() {
 
       {/* Footer */}
       <footer className="footer">
-      <p class="hero-description">© 2024 Heart Rate Monitoring System. All rights reserved.</p>
+        <p className="hero-description">
+          © 2024 Heart Rate Monitoring System. All rights reserved.
+        </p>
       </footer>
     </div>
   );

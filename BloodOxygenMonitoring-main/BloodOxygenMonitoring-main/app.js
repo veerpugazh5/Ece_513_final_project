@@ -3,44 +3,46 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-const cors = require('cors');  // only declare cors once
+const cors = require('cors');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
-const https = require('https');
-const fs = require('fs');
 
 // Import controller
 var indexRouter = require('./routes/IndexController');
 const patientController = require('./routes/PatientController.js');
 const physicianRoutes = require('./routes/PhysicianController');
 const particleController = require('./routes/ParticleController');
+const apiKeyService = require("./service/ApiKeyService.js")
+
+var  API_KEY = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+API_KEY = "DUMMY"
+console.log(`Generated API Key: ${API_KEY}`); // Print the generated API Key on server startup
+process.env.API_KEY = API_KEY;
 
 // Initialize the express app
 const app = express();
 
-// SSL/HTTPS options
-const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/heartrackerpro.duckdns.org/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/heartrackerpro.duckdns.org/fullchain.pem')
-};
+// Middleware to parse JSON bodies
+app.use(cors());
+app.use(express.json());
 
-// CORS configuration
-app.use(cors({
-    origin: ['https://heartrackerpro.duckdns.org:3001', 'https://heartrackerpro.duckdns.org'],
+// Update CORS to use HTTP instead of HTTPS
+app.use(cors({ 
+    origin: 'https://ec2-18-217-163-243.us-east-2.compute.amazonaws.com:3001',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 
 // This is to enable cross-origin access
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://heartrackerpro.duckdns.org:3001');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
-// Middleware
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
@@ -53,7 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/patient', patientController);
 app.use('/physician', physicianRoutes);
-app.use('/particle', particleController);
+app.use('/particle',apiKeyService, particleController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,9 +72,10 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// Create HTTPS server
-https.createServer(options, app).listen(3000, () => {
-    console.log('HTTPS server running on port 3000');
+// Add this to start the server
+const port = 3000; // or whatever port you want to use
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
 
 module.exports = app;

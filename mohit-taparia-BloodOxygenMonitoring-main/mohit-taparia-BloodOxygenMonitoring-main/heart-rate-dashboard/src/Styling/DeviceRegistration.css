@@ -7,17 +7,18 @@ body {
 
 .device-registration-container {
   max-width: 800px;
-  margin: 30px auto;
+  margin: 20px auto;
   padding: 20px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box; /* Ensure padding stays within width */
+  box-sizing: border-box;
 }
 
 h2 {
   text-align: center;
-  color: #2572ba; /* Deep teal */
+  color: #2572ba;
+  font-size: 1.8rem;
 }
 
 .device-form {
@@ -26,6 +27,7 @@ h2 {
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
 .device-row {
@@ -33,40 +35,41 @@ h2 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
-  gap: 10px; /* Added gap for spacing between label and input */
+  gap: 10px;
 }
 
 .device-row label {
   flex: 1;
   font-weight: bold;
   color: #333;
-  min-width: 120px; /* Prevent label collapse */
+  min-width: 100px;
 }
 
-.device-row input {
+.device-row input,
+.device-row select {
   flex: 2;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  width: 100%; /* Ensure input stretches in small screens */
+  width: 100%;
   box-sizing: border-box;
 }
 
 .register-button {
   width: 100%;
-  padding: 10px 15px;
-  background-color: #2572ba; /* Deep teal */
+  padding: 10px;
+  background-color: #2572ba;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
 .register-button:hover {
-  background-color: #1d9848; /* Darker teal */
+  background-color: #1d9848;
 }
 
 .registered-devices {
@@ -77,24 +80,27 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
+  font-size: 1.5rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto; /* Adjust for small devices */
 }
 
 table thead {
-  background-color: #2572ba; /* Deep teal */
+  background-color: #2572ba;
   color: white;
 }
 
 table th,
 table td {
-  padding: 10px;
+  padding: 8px;
   text-align: left;
   border: 1px solid #ddd;
-  box-sizing: border-box; /* Prevent overflow */
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 table tbody tr:nth-child(even) {
@@ -107,15 +113,16 @@ table tbody tr:hover {
 
 .delete-button {
   padding: 5px 10px;
-  background-color: #e74c3c; /* Red */
+  background-color: #e74c3c;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .delete-button:hover {
-  background-color: #c0392b; /* Darker red */
+  background-color: #c0392b;
 }
 
 /* Responsive Design */
@@ -125,52 +132,75 @@ table tbody tr:hover {
   }
 
   .device-row {
-    gap: 8px;
-  }
-}
-
-@media (max-width: 768px) {
-  .device-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 8px;
   }
 
   .device-row label {
-    margin-bottom: 5px;
-    font-size: 0.9rem; /* Slightly smaller font for labels */
+    margin-bottom: 3px;
   }
 
-  .device-row input {
+  table th,
+  table td {
     font-size: 0.9rem;
+    padding: 6px;
   }
 
   .register-button {
     font-size: 0.9rem;
     padding: 8px;
   }
+}
+
+@media (max-width: 768px) {
+  .device-registration-container {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .device-row input,
+  .device-row select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .register-button {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
 
   table th,
   table td {
     font-size: 0.85rem;
-    padding: 8px;
+    padding: 6px;
   }
 }
 
 @media (max-width: 480px) {
   .device-registration-container {
+    width: 100%;
     padding: 10px;
-    width: 95%; /* Full-width container with slight padding */
+    margin: 5px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
   }
 
   .device-row label {
     font-size: 0.85rem;
-    min-width: unset; /* Remove fixed width for labels */
+    min-width: unset; /* Remove fixed width */
   }
 
-  .device-row input {
+  .device-row input,
+  .device-row select {
     font-size: 0.85rem;
-    padding: 8px;
+    padding: 6px;
   }
 
   .register-button {
@@ -178,9 +208,19 @@ table tbody tr:hover {
     padding: 6px;
   }
 
+  table {
+    display: block;
+    overflow-x: auto; /* Allow horizontal scroll on small screens */
+  }
+
   table th,
   table td {
     font-size: 0.8rem;
-    padding: 6px;
+    padding: 5px;
+  }
+
+  .delete-button {
+    font-size: 0.75rem;
+    padding: 4px 6px;
   }
 }

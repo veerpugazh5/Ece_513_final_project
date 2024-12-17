@@ -7,15 +7,17 @@ function DeviceRegistration() {
   const [deviceDetails, setDeviceDetails] = useState({
     deviceName: '',
     serialNumber: '',
+    startTime: '06:00',
+    endTime: '22:00',
+    frequencyOfReading: '30'
   });
 
-  const [registeredDevices, setRegisteredDevices] = useState([]); // State to store registered devices
+  const [registeredDevices, setRegisteredDevices] = useState([]); 
 
-  // Fetch registered devices
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const token = localStorage.getItem('token'); // Get token from local storage
+        const token = localStorage.getItem('token'); 
         const response = await axios.get(apiLinks.getRegisteredDevices, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -25,19 +27,16 @@ function DeviceRegistration() {
         alert('Failed to fetch devices.');
       }
     };
-
     fetchDevices();
   }, []);
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDeviceDetails({ ...deviceDetails, [name]: value });
   };
 
-  // Handle device registration
   const handleRegister = async () => {
-    if (!deviceDetails.deviceName || !deviceDetails.serialNumber) {
+    if (!deviceDetails.deviceName || !deviceDetails.serialNumber || !deviceDetails.startTime || !deviceDetails.endTime || !deviceDetails.frequencyOfReading) {
       alert('Please fill in all fields.');
       return;
     }
@@ -51,9 +50,8 @@ function DeviceRegistration() {
       );
 
       alert('Device registered successfully!');
-      setDeviceDetails({ deviceName: '', serialNumber: '' }); // Reset form
+      setDeviceDetails({ deviceName: '', serialNumber: '', startTime: '06:00', endTime: '22:00', frequencyOfReading: '30' });
 
-      // Refresh the registered devices list
       const response = await axios.get(apiLinks.getRegisteredDevices, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -63,6 +61,7 @@ function DeviceRegistration() {
       alert('Failed to register device.');
     }
   };
+
 
   // Handle device deletion by serial number
   const handleDelete = async (serialNumber) => {
@@ -87,36 +86,40 @@ function DeviceRegistration() {
     }
   };
 
+
   return (
     <div className="device-registration-container">
       <h2>Setup Heartrate Measurement Device</h2>
 
-      {/* Device Registration Form */}
       <div className="device-form">
         <div className="device-row">
           <label>Device Name</label>
-          <input
-            type="text"
-            name="deviceName"
-            value={deviceDetails.deviceName}
-            onChange={handleChange}
-            placeholder="Enter device name"
-          />
+          <input type="text" name="deviceName" value={deviceDetails.deviceName} onChange={handleChange} placeholder="Enter device name" />
         </div>
         <div className="device-row">
           <label>Device Serial Number</label>
-          <input
-            type="text"
-            name="serialNumber"
-            value={deviceDetails.serialNumber}
-            onChange={handleChange}
-            placeholder="Enter serial number"
-          />
+          <input type="text" name="serialNumber" value={deviceDetails.serialNumber} onChange={handleChange} placeholder="Enter serial number" />
         </div>
         <div className="device-row">
-          <button onClick={handleRegister} className="register-button">
-            Register Device
-          </button>
+          <label>Start Time</label>
+          <input type="time" name="startTime" value={deviceDetails.startTime} onChange={handleChange} />
+        </div>
+        <div className="device-row">
+          <label>End Time</label>
+          <input type="time" name="endTime" value={deviceDetails.endTime} onChange={handleChange} />
+        </div>
+        <div className="device-row">
+          <label>Frequency of Reading</label>
+          <select name="frequencyOfReading" value={deviceDetails.frequencyOfReading} onChange={handleChange}>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+            <option value="60">60</option>
+          </select>
+          <p><b>minutes</b></p>
+        </div>
+        <div className="device-row">
+          <button onClick={handleRegister} className="register-button">Register Device</button>
         </div>
       </div>
 
@@ -129,6 +132,9 @@ function DeviceRegistration() {
               <tr>
                 <th>Device Name</th>
                 <th>Serial Number</th>
+                <th>Reading Start Time</th>
+                <th>Reading End Time </th>
+                <th>Frequency (minutes)</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -137,13 +143,11 @@ function DeviceRegistration() {
                 <tr key={device.serialNumber}>
                   <td>{device.deviceName}</td>
                   <td>{device.serialNumber}</td>
+                  <td>{device.startTime}</td>
+                  <td>{device.endTime}</td>
+                  <td>{device.frequencyOfReading}</td>
                   <td>
-                    <button
-                      onClick={() => handleDelete(device.serialNumber)}
-                      className="delete-button"
-                    >
-                      Delete
-                    </button>
+                    <button onClick={() => handleDelete(device.serialNumber)} className="delete-button">Delete</button>
                   </td>
                 </tr>
               ))}

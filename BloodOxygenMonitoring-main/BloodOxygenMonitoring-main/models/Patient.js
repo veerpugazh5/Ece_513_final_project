@@ -17,7 +17,10 @@ const patientSchema = new db.Schema({
     devices: [
         {
             deviceName: { type: String, required: true },
-            serialNumber: { type: String, required: true }
+            serialNumber: { type: String, required: true },
+            startTime: { type: String, required: true },  // Start time of device usage
+            endTime: { type: String, required: true },    // End time of device usage
+            frequencyOfReading: { type: String, required: true }  // Frequency of data readings
         }
     ]
 });
